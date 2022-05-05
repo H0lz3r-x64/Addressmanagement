@@ -1,0 +1,48 @@
+Index: Adressverwaltung_Hauptfenster.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Adressverwaltung_Hauptfenster.py b/Adressverwaltung_Hauptfenster.py
+--- a/Adressverwaltung_Hauptfenster.py	
++++ b/Adressverwaltung_Hauptfenster.py	(date 1651495280897)
+@@ -85,8 +85,8 @@
+             self.first_element()
+ 
+         # Debug | auto Input
+-        # i = 3
+-        # while i < 12:
++        # i = 0
++        # while i < 12222:
+         #     self.on_pb_neuer_eintrag_clicked()
+         #     self.VOR_NAMEN.setText(f"autoInp{i}")
+         #     self.FAM_NAME.setText(f"{i}")
+@@ -457,7 +457,7 @@
+         try:
+             if self.new_element:
+                 print("new_element")
+-                fromDB = [''] * 19
++                fromDB = [''] * 20
+             else:
+                 print("not new_element")
+                 DB_verbinden()  # Verbindung zur DB herstellen
+@@ -467,7 +467,7 @@
+                 fetch = mycursor.fetchall()
+                 fromDB = fetch[0]
+ 
+-            self.lbl_lastEdited.setText(f"Zuletzt bearbeitet: {fromDB[20]}")
++            self.lbl_lastEdited.setText(f"Zuletzt bearbeitet: {fromDB[19]}")
+             # ---------------------------
+             filled = 0
+             empty = 0
+@@ -521,8 +521,8 @@
+             print(e)
+ 
+     def delete_picture(self):
+-        path = self.no_pic_path
+-        self.lbl_portrait.setPixmap(QPixmap(path))
++        self.path = self.no_pic_path
++        self.lbl_portrait.setPixmap(QPixmap(self.path))
+ 
+     def upload(self):
+         index = self.Daten_Tabelle.currentRow()
