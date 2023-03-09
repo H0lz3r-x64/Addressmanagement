@@ -12,23 +12,7 @@ from PyQt6.QtGui import *
 from PyQt6.QtWidgets import *
 from Ui_Adressverwaltung_Hauptfenster import Ui_Hauptfenster
 
-
-def set_dpi_awareness():  # No work
-    if platform.system() == "Windows":
-        # Query DPI Awareness (Windows 10 and 8)
-        awareness = ctypes.c_int()
-        errorCode = ctypes.windll.shcore.GetProcessDpiAwareness(0, ctypes.byref(awareness))
-
-        if awareness.value == 0 or awareness.value == 1:
-            release = platform.release()
-            if release == "11" or release == "10" or release == "8":
-                # Set DPI Awareness  (Windows 10 and 8)
-                errorCode = ctypes.windll.shcore.SetProcessDpiAwareness(2)
-                # the argument is the awareness level, which can be 0, 1 or 2:
-                # for 1-to-1 pixel control I seem to need it to be non-zero
-            elif release == "7" or release == "Vista":
-                # Set DPI Awareness  (Windows 7 and Vista)
-                success = ctypes.windll.user32.SetProcessDPIAware()
+os.environ["QT_FONT_DPI"] = "115"
 
 
 def DB_verbinden():
@@ -66,7 +50,6 @@ class Main(QMainWindow, Ui_Hauptfenster):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
         # load modes
         self.light_mode = app.palette()
         self.dark_mode = self.load_darkstyle()
